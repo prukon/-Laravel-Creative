@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 a3f7eb88f6a304808857b268acaa323a13608674 prukon <prukon@gmail.com> 1699739407 +0300	commit (initial): initial commit
+a3f7eb88f6a304808857b268acaa323a13608674 0605a28431cae91212888bdfc30149f620e57745 prukon <prukon@gmail.com> 1699739581 +0300	commit: initial commit
+0605a28431cae91212888bdfc30149f620e57745 d9bc0de007997b79d006a2b6ecc382775ff4ee16 prukon <prukon@gmail.com> 1699821427 +0300	commit: add firstOrCreate and updateOrCreate
+d9bc0de007997b79d006a2b6ecc382775ff4ee16 a744a642d0ba331049b5cd0a9f6cf1870a075856 prukon <prukon@gmail.com> 1699862801 +0300	commit: add migration change
+a744a642d0ba331049b5cd0a9f6cf1870a075856 85fbfd548ebe9c031af536824da69271118df449 prukon <prukon@gmail.com> 1699904291 +0300	commit: lesson 14. Add view
+85fbfd548ebe9c031af536824da69271118df449 b56054b7096317a3c40b1f39c41691c98d9f386d prukon <prukon@gmail.com> 1699907213 +0300	commit: lesson 15. Add layout and navigation.
+b56054b7096317a3c40b1f39c41691c98d9f386d c468703d3f0d967ecd3acc5ed862b182af476c80 prukon <prukon@gmail.com> 1699995972 +0300	commit: lesson 16. Add bootstrap
+c468703d3f0d967ecd3acc5ed862b182af476c80 bf84c9e811243c429b951af39e2b79ceb6f257e1 prukon <prukon@gmail.com> 1699999137 +0300	commit: lesson 16. Add bootstrap nav
