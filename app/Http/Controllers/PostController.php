@@ -24,17 +24,17 @@ class PostController extends Controller
 //Получить записи по условию
         $somePost = Post::where('is_published', 1)->get();
 
-return view("posts", compact("allPosts"));
+return view("post.index", compact("allPosts")); //означает, что мы обращаемся к папке post, в которой файл index.blade.php
 
   }
 
 //  public function about(){
-//      $allPosts = Post::all();
+//      $allPosts = post::all();
 //      return view("about", compact("allPosts"));
 //  }
 //
 //    public function contacts(){
-//        $allPosts = Post::all();
+//        $allPosts = post::all();
 //        return view("contacts", compact("allPosts"));
 //    }
 
@@ -58,7 +58,7 @@ $postsArr =[
  ],
 ];
 //1 способ
-//Post::create([
+//post::create([
 //    'title' => 'Мой заголовок3',
 //    'content' => 'Некий текст3',
 //    'image' => 'Image3',
@@ -72,7 +72,7 @@ Post::create($post);
 }
 //3 способ
 //        foreach ($postsArr as $post) {
-//        Post::create([
+//        post::create([
 //            'title' => $post['title'],
 //            'content' => $post['content'],
 //            'image' => $post['image'],

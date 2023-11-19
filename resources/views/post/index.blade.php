@@ -1,6 +1,13 @@
-@extends('layouts/main')
+@extends('layouts.main')
 
 @section('content')
+
+
+  @foreach($allPosts as $post)
+      <div>{{$post->id}}.  {{$post->title}}</div>
+  @endforeach
+
+
     <table class="table">
         <thead>
         <tr>
