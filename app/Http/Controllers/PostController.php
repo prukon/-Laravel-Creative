@@ -33,30 +33,36 @@ return view("post.index", compact("allPosts")); //означает, что мы 
 //      return view("about", compact("allPosts"));
 //  }
 //
-//    public function contacts(){
-//        $allPosts = post::all();
-//        return view("contacts", compact("allPosts"));
-//    }
+    public function contacts(){
+        $allPosts = post::all();
+        return view("contacts", compact("allPosts"));
+    }
 
 
-
+//метод для формирования страницы создания чего-либо
     public function create() {
-$postsArr =[
-    [
-    'title' => 'Мой заголовок',
-    'content' => 'Некий текст',
-    'image' => 'Image',
-    'likes' => '2',
-    'is_Published' => '1',
-],
-    [
-     'title' => 'Мой заголовок2',
-     'content' => 'Некий текст2',
-     'image' => 'Image2',
-     'likes' => '4',
-     'is_Published' => '1',
- ],
-];
+
+        $allPosts = post::all();
+
+        return view("post.create", compact("allPosts"));
+
+//1 способ
+//$postsArr =[
+//    [
+//    'title' => 'Мой заголовок',
+//    'content' => 'Некий текст',
+//    'image' => 'Image',
+//    'likes' => '2',
+//    'is_Published' => '1',
+//],
+//    [
+//     'title' => 'Мой заголовок2',
+//     'content' => 'Некий текст2',
+//     'image' => 'Image2',
+//     'likes' => '4',
+//     'is_Published' => '1',
+// ],
+//];
 //1 способ
 //post::create([
 //    'title' => 'Мой заголовок3',
@@ -67,9 +73,10 @@ $postsArr =[
 //]);
 
 //2 способ
-foreach ($postsArr as $post) {
-Post::create($post);
-}
+//foreach ($postsArr as $post) {
+//Post::create($post);
+//}
+
 //3 способ
 //        foreach ($postsArr as $post) {
 //        post::create([
@@ -81,6 +88,21 @@ Post::create($post);
 //        ]);
 //        }
         dd("created");
+  }
+
+//  метод для обработки отправленных данных
+  public function store() {
+//        в дата указываем какие ключи мы ждем с формы
+        $data = request()->validate([
+"title" => "string",
+"content" => "string",
+"image" => "string",
+"likes" => "integer",
+        ]);
+//      dd  ($data);
+      Post::create($data); //метод create добавляет в БД массив data
+      return redirect()->route('post.index');
+
   }
 
     public function  update() {

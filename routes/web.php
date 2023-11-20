@@ -35,7 +35,11 @@ use App\Http\Controllers\MainController;
 
 
 Route::get('/posts', [PostController::class, 'index' ])->name('post.index');
-Route::get('/post/create', [PostController::class, 'create' ]);
+Route::get('/posts/create', [PostController::class, 'create' ]);
+
+Route::post('/posts', [PostController::class, 'store' ])->name('post.store'); //название нужно, чтобы в форме указать куда отправлять данные
+
+
 Route::get('/post/update', [PostController::class, 'update' ]);
 Route::get('/post/delete', [PostController::class, 'delete' ]);
 Route::get('/post/first_or_create', [PostController::class, 'firstOrCreate' ]);
