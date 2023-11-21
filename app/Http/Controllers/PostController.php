@@ -17,9 +17,6 @@ class PostController extends Controller
 
 //        Получить все записи
         $allPosts = Post::all();
-        dump($allPosts);
-//foreach ($allPosts as $post) {
-//}
 
 //Получить записи по условию
         $somePost = Post::where('is_published', 1)->get();
@@ -28,70 +25,16 @@ return view("post.index", compact("allPosts")); //означает, что мы 
 
   }
 
-//  public function about(){
-//      $allPosts = post::all();
-//      return view("about", compact("allPosts"));
-//  }
-//
-    public function contacts(){
-        $allPosts = post::all();
-        return view("contacts", compact("allPosts"));
-    }
 
-
+//   create -> store
 //метод для формирования страницы создания чего-либо
     public function create() {
-
         $allPosts = post::all();
-
         return view("post.create", compact("allPosts"));
-
-//1 способ
-//$postsArr =[
-//    [
-//    'title' => 'Мой заголовок',
-//    'content' => 'Некий текст',
-//    'image' => 'Image',
-//    'likes' => '2',
-//    'is_Published' => '1',
-//],
-//    [
-//     'title' => 'Мой заголовок2',
-//     'content' => 'Некий текст2',
-//     'image' => 'Image2',
-//     'likes' => '4',
-//     'is_Published' => '1',
-// ],
-//];
-//1 способ
-//post::create([
-//    'title' => 'Мой заголовок3',
-//    'content' => 'Некий текст3',
-//    'image' => 'Image3',
-//    'likes' => '5',
-//    'is_Published' => '1',
-//]);
-
-//2 способ
-//foreach ($postsArr as $post) {
-//Post::create($post);
-//}
-
-//3 способ
-//        foreach ($postsArr as $post) {
-//        post::create([
-//            'title' => $post['title'],
-//            'content' => $post['content'],
-//            'image' => $post['image'],
-//            'likes' => $post['likes'],
-//            'is_Published' => $post['is_Published'],
-//        ]);
-//        }
-        dd("created");
   }
 
 //  метод для обработки отправленных данных
-  public function store() {
+    public function store() {
 //        в дата указываем какие ключи мы ждем с формы
         $data = request()->validate([
 "title" => "string",
@@ -105,19 +48,44 @@ return view("post.index", compact("allPosts")); //означает, что мы 
 
   }
 
-    public function  update() {
-        $post = Post::find(6);
-//        dd($post->content);
-        $post->update([
-            'title' => 'update1',
-            'content' => 'update2',
-            'image' => 'update3',
-            'likes' => 33,
-            'is_Published' => true
+//   edit -> update
+    public function edit(Post $post) {
+        dump($post->title);
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Post $post) {
+
+        $data = request()->validate([
+            "title" => "string",
+            "content" => "string",
+            "image" => "string",
+            "likes" => "integer",
         ]);
-        dump("updated");
+//      dd  ($data);
+      $post->update($data);
+//        Post::create($data); //метод create добавляет в БД массив data
+        return redirect()->route('post.show', $post->id);
+//        dump("1111");
 
     }
+
+    public function show(Post $post) {
+        return view('post.show', compact("post"));
+    }
+
+    public function destroy(Post $post) {
+    $post->delete();
+    return redirect()->route('post.index');
+    }
+
+    //Доп методы
+
+    public function contacts(){
+        $allPosts = post::all();
+        return view("contacts", compact("allPosts"));
+    }
+
 
     public function delete() {
         $post = Post::find(5);
