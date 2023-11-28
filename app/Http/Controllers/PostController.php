@@ -1,5 +1,5 @@
 <?php
-//5
+
 namespace App\Http\Controllers;
 
 use App\Models\Post;
@@ -25,11 +25,19 @@ return view("post.index", compact("allPosts")); //означает, что мы 
 
   }
 
+    public function test()
+    {
+        dump("123");
+    }
+
+
 
 //   create -> store
 //метод для формирования страницы создания чего-либо
     public function create() {
         $allPosts = post::all();
+//        dump("123");
+
         return view("post.create", compact("allPosts"));
   }
 
@@ -85,7 +93,6 @@ return view("post.index", compact("allPosts")); //означает, что мы 
         $allPosts = post::all();
         return view("contacts", compact("allPosts"));
     }
-
 
     public function delete() {
         $post = Post::find(5);

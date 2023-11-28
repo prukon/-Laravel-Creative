@@ -38,18 +38,23 @@ Route::get('/posts', [PostController::class, 'index' ])->name('post.index');
 //Роут отображения одного поста
 Route::get('/posts/{post}', [PostController::class, 'show' ])->name('post.show');
 
-
-Route::get('/posts/create', [PostController::class, 'create' ])->name('post.create');
+//   create -> store
+Route::get('/post/create',  [PostController::class, 'create' ])->name('post.create');
+Route::get('/posts/create1', [PostController::class, 'index' ]);
 //Роут обработки добавления постов
 Route::post('/posts', [PostController::class, 'store' ])->name('post.store'); //название нужно, чтобы в форме указать куда отправлять данные
 
-Route::get('/posts/{post}/edit', [PostController::class, 'edit' ])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update' ])->name('post.update');
+
+
+
 Route::delete('/posts/{post}', [PostController::class, 'destroy' ])->name('post.delete');
 
 
+//   edit -> update
+Route::get('/posts/{post}/edit', [PostController::class, 'edit' ])->name('post.edit');
+Route::patch('/posts/{post}', [PostController::class, 'update' ])->name('post.update');
 
-Route::get('/post/update', [PostController::class, 'update' ]);
+
 Route::get('/post/delete', [PostController::class, 'delete' ]);
 Route::get('/post/first_or_create', [PostController::class, 'firstOrCreate' ]);
 Route::get('/post/update_or_create', [PostController::class, 'updateOrCreate' ]);
@@ -57,3 +62,8 @@ Route::get('/post/update_or_create', [PostController::class, 'updateOrCreate' ])
 Route::get('/about', [AboutController::class, 'index' ])->name('about.index');
 Route::get('/contacts', [ContactsController::class, 'index' ])->name('contact.index');
 Route::get('/main', [MainController::class, 'index' ])->name('main.index');
+
+
+//Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
