@@ -15,7 +15,7 @@ class ContactsController extends Controller
 
 //        Получить все записи
         $allPosts = Post::all();
-        dump($allPosts);
+//        dump($allPosts);
 
         return view("contacts", compact("allPosts"));
 

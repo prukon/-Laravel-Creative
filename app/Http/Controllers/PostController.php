@@ -21,9 +21,15 @@ class PostController extends Controller
 //Получить записи по условию
         $somePost = Post::where('is_published', 1)->get();
 
-return view("post.index", compact("allPosts")); //означает, что мы обращаемся к папке post, в которой файл index.blade.php
+        return view("post.index", compact("allPosts")); //означает, что мы обращаемся к папке post, в которой файл index.blade.php
 
-  }
+    }
+
+    public function test()
+    {
+        dump("123");
+    }
+
 
     public function test()
     {
@@ -39,22 +45,22 @@ return view("post.index", compact("allPosts")); //означает, что мы 
 //        dump("123");
 
         return view("post.create", compact("allPosts"));
-  }
+    }
 
 //  метод для обработки отправленных данных
     public function store() {
 //        в дата указываем какие ключи мы ждем с формы
         $data = request()->validate([
-"title" => "string",
-"content" => "string",
-"image" => "string",
-"likes" => "integer",
+            "title" => "string",
+            "content" => "string",
+            "image" => "string",
+            "likes" => "integer",
         ]);
 //      dd  ($data);
-      Post::create($data); //метод create добавляет в БД массив data
-      return redirect()->route('post.index');
+        Post::create($data); //метод create добавляет в БД массив data
+        return redirect()->route('post.index');
 
-  }
+    }
 
 //   edit -> update
     public function edit(Post $post) {
@@ -71,7 +77,7 @@ return view("post.index", compact("allPosts")); //означает, что мы 
             "likes" => "integer",
         ]);
 //      dd  ($data);
-      $post->update($data);
+        $post->update($data);
 //        Post::create($data); //метод create добавляет в БД массив data
         return redirect()->route('post.show', $post->id);
 //        dump("1111");
@@ -83,8 +89,8 @@ return view("post.index", compact("allPosts")); //означает, что мы 
     }
 
     public function destroy(Post $post) {
-    $post->delete();
-    return redirect()->route('post.index');
+        $post->delete();
+        return redirect()->route('post.index');
     }
 
     //Доп методы
@@ -117,11 +123,11 @@ return view("post.index", compact("allPosts")); //означает, что мы 
         dump("firstOrCreate");
 
         $anotherPost = [
-                'title' => 'firstOrCreate',
-                'content' => 'Некий текст 3',
-                'image' => 'Image3',
-                'likes' => '22',
-                'is_Published' => '1',
+            'title' => 'firstOrCreate',
+            'content' => 'Некий текст 3',
+            'image' => 'Image3',
+            'likes' => '22',
+            'is_Published' => '1',
         ];
 
         $post = Post::firstOrCreate([

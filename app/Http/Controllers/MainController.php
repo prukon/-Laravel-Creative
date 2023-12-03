@@ -15,7 +15,7 @@ class MainController extends Controller
 
 //        Получить все записи
         $allPosts = Post::all();
-        dump($allPosts);
+//        dump($allPosts);
 
         return view("main", compact("allPosts"));
 
