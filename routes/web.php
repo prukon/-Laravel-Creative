@@ -28,42 +28,47 @@ Route::get('/', function () {
 
 // Action-синтаксис (не забудьте импортировать класс контроллера)
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\ShowController;
+use App\Http\Controllers\Post\CreateController;
+use App\Http\Controllers\Post\StoreController;
+use App\Http\Controllers\Post\EditController;
+use App\Http\Controllers\Post\UpdateController;
+use App\Http\Controllers\Post\DestroyController;
+
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\StudentController;
 
+//Route::group(['namespace'=> 'Post'], function (){
 
-Route::get('/posts', [PostController::class, 'index' ])->name('post.index');
+//    Route::get('/posts', 'IndexController')->name('post.index');
+Route::get('/posts', [IndexController::class, '__invoke' ])->name('post.index');
 //Роут отображения одного поста
-Route::get('/posts/{post}', [PostController::class, 'show' ])->name('post.show');
+Route::get('/posts/{post}', [ShowController::class, '__invoke'  ])->name('post.show');
 
-//   create -> store
-Route::get('/post/create',  [PostController::class, 'create' ])->name('post.create');
-Route::get('/posts/create1', [PostController::class, 'index' ]);
+
+Route::get('/post/create', [CreateController::class, '__invoke'  ])->name('post.create');
 //Роут обработки добавления постов
-Route::post('/posts', [PostController::class, 'store' ])->name('post.store'); //название нужно, чтобы в форме указать куда отправлять данные
+Route::post('/posts', [StoreController::class, '__invoke'  ])->name('post.store'); //название нужно, чтобы в форме указать куда отправлять данные
+
+Route::get('/posts/{post}/edit', [EditController::class, '__invoke'  ])->name('post.edit');
+Route::patch('/posts/{post}', [UpdateController::class, '__invoke'  ])->name('post.update');
+Route::delete('/posts/{post}', [DestroyController::class, '__invoke'  ])->name('post.delete');
+
+//} );
 
 
-
-
-Route::delete('/posts/{post}', [PostController::class, 'destroy' ])->name('post.delete');
-
-
-//   edit -> update
-Route::get('/posts/{post}/edit', [PostController::class, 'edit' ])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update' ])->name('post.update');
-
-
-Route::get('/post/delete', [PostController::class, 'delete' ]);
-Route::get('/post/first_or_create', [PostController::class, 'firstOrCreate' ]);
-Route::get('/post/update_or_create', [PostController::class, 'updateOrCreate' ]);
+//Route::get('/post/update', [PostController::class, 'update' ]);
+//Route::get('/post/delete', [PostController::class, 'delete' ]);
+//Route::get('/post/first_or_create', [PostController::class, 'firstOrCreate' ]);
+//Route::get('/post/update_or_create', [PostController::class, 'updateOrCreate' ]);
 
 Route::get('/about', [AboutController::class, 'index' ])->name('about.index');
 Route::get('/contacts', [ContactsController::class, 'index' ])->name('contact.index');
 Route::get('/main', [MainController::class, 'index' ])->name('main.index');
 
 
-//Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Students
+Route::get('/students', [StudentController::class, 'index' ])->name('student.index');
