@@ -23,7 +23,6 @@ public function __invoke(UpdateRequest $request, Post $post){
     //метод сначала удаляет запись, потом добавляет их в бд
     $post->tags()->sync($tags);
 
-
 //        Post::create($data); //метод create добавляет в БД массив data
     return redirect()->route('post.show', $post->id);
 //        dump("1111");

@@ -18,9 +18,6 @@ public function __invoke(StoreRequest $request){
     $tags = $data['tags'];
     unset($data['tags']);
 
-//      dd  ($tags, $data);
-
-
 //        не проф подход. В нем добалвется в БД сведения о создании и изменении записи
 //        $post = Post::create($data);
 //        foreach ($tags as $tag) {
@@ -34,12 +31,6 @@ public function __invoke(StoreRequest $request){
 //        проф подход. В нем  не добалвется в БД сведения о создании и изменении записи
     $post = Post::create($data);
     $post->tags()->attach($tags);
-
-
-
-
-    //        Post::create($data); //метод create добавляет в БД массив data
     return redirect()->route('post.index');
-
 }
 }
