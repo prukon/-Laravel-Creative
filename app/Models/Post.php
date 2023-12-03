@@ -11,11 +11,11 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-protected $table = 'posts';
+    protected $table = 'posts';
 
 
 //снятие защиты добавления новых записей в БД (1 способ)
-protected $guarded = [];
+    protected $guarded = [];
 
 //аналогичная запись  (2 способ)
 //protected $guarded = false;
@@ -25,4 +25,17 @@ protected $guarded = [];
 
 
     public $someProperty;
+
+
+    //один ко многим
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    //        Многое ко многим
+    public  function tags() {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id','tag_id');
+        }
+
+
 }
