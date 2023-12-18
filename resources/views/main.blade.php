@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        this is main
+        this is main1
     </div>
 @endsection
 
